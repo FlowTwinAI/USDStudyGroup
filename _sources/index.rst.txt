@@ -1,0 +1,63 @@
+.. USD_Study_group documentation master file, created by
+   sphinx-quickstart on Thu Oct 16 19:15:08 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+CAD to USD 
+======================================
+OpenUSD (Universal Scene Description) is an open-source framework developed by Pixar for describing, composing, simulating, and collaborating in 3D scenes.
+
+Reference `Building CAD to USD Workflows with NVIDIA Omniverse <https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse>`_
+
+.. attention::
+   
+   Reference `Building CAD to USD Workflows with NVIDIA Omniverse '<https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse>'`
+
+
+Introduction
+---------------
+Transferring 3D data between applications has long been a challenge, especially with proprietary formats such as native computer-aided design (CAD) files. 
+
+CAD models are vital for engineering and manufacturing physical products, yet they’re not designed for the complex, collaborative, and simulation-heavy environments crucial for physical AI applications such as robotics or autonomous vehicles (AVs).
+
+
+OpenUSD in modern 3D pipelines
+************************
+
+Data interoperability
+************************
+
+Collaboration through data aggregation
+
+************************
+
+CAD to USD example workflow
+--------------------
+
+
+Converting the file to USD
+--------------------
+
+
+Analyzing the conversion
+--------------------
+
+.. toctree::
+   :hidden:
+   :caption: CAD2USD
+   :maxdepth: 1
+
+   docs/Get started with OpenUSD
+   docs/USD Resources
+   docs/Utilities
+   docs/Meeting Minutes
+   
+
+
+
+
+
+
+
+
+
