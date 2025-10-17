@@ -11,7 +11,7 @@ Reference `Building CAD to USD Workflows with NVIDIA Omniverse <https://develope
 
 .. attention::
    
-   Reference `Building CAD to USD Workflows with NVIDIA Omniverse '<https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse>'`
+   Reference `Building CAD to USD Workflows with NVIDIA Omniverse '<https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse>'`_
 
 
 Introduction

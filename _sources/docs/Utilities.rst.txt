@@ -1,2 +1,125 @@
 Utilities
 ===============
+Manual Transcoder Instructions 
+
+Transcoder Json 
+~~~~~~~~~~~~
+jt_config.json
+
+.. code-block:: json
+
+    {
+        "convertCurves": true,
+        "fallbackTessParamAngular": 0,
+        "fallbackTessParamChordal": 0,
+        "fallbackTessParamHoleRemovalFraction": 0,
+        "fallbackTessParamLength": 0,
+        "fallbackTessParamMaxAspect": 0,
+        "fallbackTessParamMinAngle": 0,
+        "fallbackTessParamMinEdgeLength": 0,
+        "fallbackTessParamTrimSuppress": false,
+        "flatten": false,
+        "instancingStyle": 2,
+        "layerFilterStyle": 1,
+        "materialType": 1,
+        "overrideTessellationGeometry": false,
+        "overrideTessellationParameters": false,
+        "progressLogging": true,
+        "sOptimizeConfig": "",
+        "bOptimize": true,
+        "bConvertHidden": false,
+        "iUpAxis": 0,
+        "dMetersPerUnit": 0.0
+    }
+1a. Transcoder Powershell Script
+~~~~~~~~~~~~  
+test_cad-usd.ps
+
+.. code-block:: powershell
+
+    ./kit.exe `
+    --allow-root `
+    --enable omni.kit.converter.jt_core `
+    --exec `
+    --/app/fastShutdown=1 `
+    '"C:\\Users\pai\\AppData\\Local\\ov\\data\\exts\\v2\\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main.py" --input-path "C:\Users\pai\Desktop\cad\nova_carter_jt.jt" --output-path "C:\Users\pai\Desktop\cad\NovaCarter.usd" --config-path "C:\Users\pai\Desktop\cad\jt_config.json"'` --info
+
+1b. Poweshell Execution
+~~~~~~~~~~~~  
+    > Copy+paste the above code in powershell 
+
+2a. Transcoder Bat Script 
+~~~~~~~~~~~~  
+test_cad-usd.bat
+
+.. code-block:: bash
+
+    @echo off
+    setlocal 
+    :: Define paths
+    set common_command= --allow-root --enable omni.kit.converter.jt_core --exec --/app/fastShutdown=1
+    set "kit_path=%userprofile%\kit-app-108\_build\windows-x86_64\release\kit\kit.exe"
+    set "JT_path=%userprofile%\AppData\Local\ov\data\exts\v2\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main1.py"
+    set "inp_file="%1%"
+    set "filename=%~n1"
+    set "out_path=%~dp0%filename%_transcoded.usd"
+    set "conf_path= %userprofile%\Desktop\cad\jt_config.json"
+    :: Echo the full command for debugging
+    echo Running JT conversion:
+    echo call %kit_path% %common_command% %JT_path% --input-path %inp_file% --output-path %out_path% --config-path %conf_path% --info 
+    pause 
+    :: Execute the command
+    %kit_path% %common_command% %JT_path% --input-path %inp_file% --output-path %out_path% --config-path %conf_path% --info
+    endlocal
+
+.. caution::  
+    The bat file still have issues parsing the paths of input,output, json.
+
+.. hint:: 
+    
+    
+
+.. hint:: 
+    1. Specify absolute path of the files(input_jt,output_usd,reference_json,) in "jt_main.py"
+   
+    .. code-block:: python 
+
+        import sys
+        import argparse
+        def _convert(input_path, output_path, config_path):
+            #carb.log_info(f"Converting: {input_path} → {output_path} using {config_path}")
+            # Your conversion logic here...
+            print(f"input_path: ",input_path,"\n output_path: ",output_path,"\n config_path: ",config_path)
+            pass
+        def main():
+            #carb.log_info("Starting JT File Conversion")
+            
+            # Inject test arguments manually
+            sys.argv = [
+                r"C:\Users\ABC\AppData\Local\ov\data\exts\v2\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main.py",
+                "--input-path", r"C:\Users\ABC\Desktop\cad\nova_carter_jt.jt",
+                "--output-path", r"C:\Users\ABC\Desktop\cad\NovaCarter.usd",
+                "--config-path", r"C:\Users\ABC\Desktop\cad\jt_config.json"
+            ]
+
+            parser = argparse.ArgumentParser("JT Converter Import")
+            parser.add_argument("--input-path", type=str, required=True)
+            parser.add_argument("--output-path", type=str, required=True)
+            parser.add_argument("--config-path", type=str, required=True)
+
+            args = parser.parse_args()
+            _convert(args.input_path, args.output_path, args.config_path)
+        main()
+
+    2. Alternatively you can chose the powershell execution method as highlighted in https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse
+
+2b. Bat Execution 
+~~~~~~~~~~~~ 
+
+.. note::
+
+   This way the *.jt can be translated into *.usd:
+
+   .. code-block:: batch
+
+      > test_cad-usd.bat nova_carter_jt.jt

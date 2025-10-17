@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/nvidia-sphinx-theme.css?v=df3ac72c" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2c90f10b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -190,6 +191,10 @@ document.write(`
   
 
   
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
 </div>
 
     </header>
@@ -324,6 +329,128 @@ document.write(`
                   
   <section id="utilities">
 <h1>Utilities<a class="headerlink" href="#utilities" title="Link to this heading">#</a></h1>
+<p>Manual Transcoder Instructions</p>
+<section id="transcoder-json">
+<h2>Transcoder Json<a class="headerlink" href="#transcoder-json" title="Link to this heading">#</a></h2>
+<p>jt_config.json</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;convertCurves&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamAngular&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamChordal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamHoleRemovalFraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamMaxAspect&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamMinAngle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamMinEdgeLength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;fallbackTessParamTrimSuppress&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;flatten&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;instancingStyle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;layerFilterStyle&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;materialType&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;overrideTessellationGeometry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;overrideTessellationParameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;progressLogging&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sOptimizeConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bOptimize&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;bConvertHidden&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;iUpAxis&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;dMetersPerUnit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="a-transcoder-powershell-script">
+<h2>1a. Transcoder Powershell Script<a class="headerlink" href="#a-transcoder-powershell-script" title="Link to this heading">#</a></h2>
+<p>test_cad-usd.ps</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">./</span><span class="n">kit</span><span class="p">.</span><span class="n">exe</span> <span class="p">`</span>
+<span class="p">-</span><span class="n">-allow-root</span> <span class="p">`</span>
+<span class="p">-</span><span class="n">-enable</span> <span class="n">omni</span><span class="p">.</span><span class="n">kit</span><span class="p">.</span><span class="n">converter</span><span class="p">.</span><span class="n">jt_core</span> <span class="p">`</span>
+<span class="p">-</span><span class="n">-exec</span> <span class="p">`</span>
+<span class="p">--/</span><span class="n">app</span><span class="p">/</span><span class="n">fastShutdown</span><span class="p">=</span><span class="n">1</span> <span class="p">`</span>
+<span class="s1">&#39;&quot;C:\\Users\pai\\AppData\\Local\\ov\\data\\exts\\v2\\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main.py&quot; --input-path &quot;C:\Users\pai\Desktop\cad\nova_carter_jt.jt&quot; --output-path &quot;C:\Users\pai\Desktop\cad\NovaCarter.usd&quot; --config-path &quot;C:\Users\pai\Desktop\cad\jt_config.json&quot;&#39;</span><span class="p">`</span> <span class="p">-</span><span class="n">-info</span>
+</pre></div>
+</div>
+</section>
+<section id="b-poweshell-execution">
+<h2>1b. Poweshell Execution<a class="headerlink" href="#b-poweshell-execution" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>&gt; Copy+paste the above code in powershell</p>
+</div></blockquote>
+</section>
+<section id="a-transcoder-bat-script">
+<h2>2a. Transcoder Bat Script<a class="headerlink" href="#a-transcoder-bat-script" title="Link to this heading">#</a></h2>
+<p>test_cad-usd.bat</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>@echo<span class="w"> </span>off
+setlocal
+::<span class="w"> </span>Define<span class="w"> </span>paths
+<span class="nb">set</span><span class="w"> </span><span class="nv">common_command</span><span class="o">=</span><span class="w"> </span>--allow-root<span class="w"> </span>--enable<span class="w"> </span>omni.kit.converter.jt_core<span class="w"> </span>--exec<span class="w"> </span>--/app/fastShutdown<span class="o">=</span><span class="m">1</span>
+<span class="nb">set</span><span class="w"> </span><span class="s2">&quot;kit_path=%userprofile%\kit-app-108\_build\windows-x86_64\release\kit\kit.exe&quot;</span>
+<span class="nb">set</span><span class="w"> </span><span class="s2">&quot;JT_path=%userprofile%\AppData\Local\ov\data\exts\v2\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main1.py&quot;</span>
+<span class="nb">set</span><span class="w"> </span><span class="s2">&quot;inp_file=&quot;</span>%1%<span class="s2">&quot;</span>
+<span class="s2">set &quot;</span><span class="nv">filename</span><span class="o">=</span>%~n1<span class="s2">&quot;</span>
+<span class="s2">set &quot;</span><span class="nv">out_path</span><span class="o">=</span>%~dp0%filename%_transcoded.usd<span class="s2">&quot;</span>
+<span class="s2">set &quot;</span><span class="nv">conf_path</span><span class="o">=</span><span class="w"> </span>%userprofile%<span class="se">\D</span>esktop<span class="se">\c</span>ad<span class="se">\j</span>t_config.json<span class="s2">&quot;</span>
+<span class="s2">:: Echo the full command for debugging</span>
+<span class="s2">echo Running JT conversion:</span>
+<span class="s2">echo call %kit_path% %common_command% %JT_path% --input-path %inp_file% --output-path %out_path% --config-path %conf_path% --info</span>
+<span class="s2">pause</span>
+<span class="s2">:: Execute the command</span>
+<span class="s2">%kit_path% %common_command% %JT_path% --input-path %inp_file% --output-path %out_path% --config-path %conf_path% --info</span>
+<span class="s2">endlocal</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The bat file still have issues parsing the paths of input,output, json.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<ol class="arabic simple">
+<li><p>Specify absolute path of the files(input_jt,output_usd,reference_json,) in “jt_main.py”</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="k">def</span> <span class="nf">_convert</span><span class="p">(</span><span class="n">input_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">config_path</span><span class="p">):</span>
+    <span class="c1">#carb.log_info(f&quot;Converting: {input_path} → {output_path} using {config_path}&quot;)</span>
+    <span class="c1"># Your conversion logic here...</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;input_path: &quot;</span><span class="p">,</span><span class="n">input_path</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> output_path: &quot;</span><span class="p">,</span><span class="n">output_path</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> config_path: &quot;</span><span class="p">,</span><span class="n">config_path</span><span class="p">)</span>
+    <span class="k">pass</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1">#carb.log_info(&quot;Starting JT File Conversion&quot;)</span>
+
+    <span class="c1"># Inject test arguments manually</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s2">&quot;C:\Users\ABC\AppData\Local\ov\data\exts\v2\omni.services.convert.cad-507.0.2+108.0.0.u81f\omni\services\convert\cad\services\process\jt_main.py&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--input-path&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\ABC\Desktop\cad\nova_carter_jt.jt&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--output-path&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\ABC\Desktop\cad\NovaCarter.usd&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--config-path&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\ABC\Desktop\cad\jt_config.json&quot;</span>
+    <span class="p">]</span>
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="s2">&quot;JT Converter Import&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--input-path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--output-path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--config-path&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">_convert</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">input_path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">output_path</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Alternatively you can chose the powershell execution method as highlighted in <a class="reference external" href="https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse">https://developer.nvidia.com/blog/building-cad-to-usd-workflows-with-nvidia-omniverse</a></p></li>
+</ol>
+</div>
+</section>
+<section id="b-bat-execution">
+<h2>2b. Bat Execution<a class="headerlink" href="#b-bat-execution" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This way the <a href="#id1"><span class="problematic" id="id2">*</span></a>.jt can be translated into <a href="#id3"><span class="problematic" id="id4">*</span></a>.usd:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span> test_cad-usd.bat nova_carter_jt.jt
+</pre></div>
+</div>
+</div>
+</section>
 </section>
 
 
@@ -361,9 +488,28 @@ document.write(`
             
             
 
-<div class="bd-sidebar-secondary"></div>
+
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcoder-json">Transcoder Json</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transcoder-powershell-script">1a. Transcoder Powershell Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-poweshell-execution">1b. Poweshell Execution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-transcoder-bat-script">2a. Transcoder Bat Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-bat-execution">2b. Bat Execution</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
 

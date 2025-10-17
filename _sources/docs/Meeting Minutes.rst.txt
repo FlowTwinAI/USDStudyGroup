@@ -1,13 +1,56 @@
 Meeting Minutes
 ===============
+
+Action Steps (Self)
+
+===============
+
 10102025
+--------------------
+
+1. Explore the Measure Tool in Kit108
 ************************
+
+.. admonition:: done
+    
+    Able to install/enable it.
+
+    Status: done
+
+2. Create a README file 
+************************
+.. admonition:: done
+
+    to push the batch file for CAD conversion to GitHub
+
+    Status: done
+
+3. Upload the PowerShell script 
+************************
+.. admonition:: done
+
+    for CAD conversion to the shared repository
+
+    Status: done
+
+4. Investigate scaling issues
+************************
+.. admonition:: todo
+
+    scaling issues with the CAD converter 
+
+    Status: wip
+
 
 10032025
-************************
+--------------------
 
 26092025
-************************
+--------------------
+
+Absent 
 
 19092025
-************************
+--------------------
+
+Intro
